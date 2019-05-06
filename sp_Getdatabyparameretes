@@ -1,0 +1,35 @@
+CREATE PROCEDURE sp_Getdatabyparameretes
+	@Title                nvarchar(50)=null,
+    @Subtitle             NVARCHAR (50) =NULL,
+    @EventStartDate       DATETIME      =NULL,
+    @EventLastDate        DATETIME      =NULL,
+	@ActiveId			int=0
+AS
+begin
+	IF @Title is null AND @Subtitle is null AND @EventStartDate is null AND @EventLastDate is null AND @ActiveId=0
+	BEGIN
+		SELECT d.*,a.Name FROM DetailsTable d INNER JOIN tb_Active a ON a.ActiveId=d.ActiveId
+	END
+	ELSE
+	BEGIN
+	IF @ActiveId=0
+	BEGIN
+		SELECT d.*,a.Name FROM DetailsTable d INNER JOIN tb_Active a ON a.ActiveId=d.ActiveId
+		WHERE 
+			Title like '%'+@Title+'%' OR
+			Subtitle like '%'+@Subtitle+'%' OR
+			EventStartDate = @EventStartDate OR
+			EventLastDate = @EventLastDate 
+	END
+	ELSE
+	BEGIN
+		SELECT d.*,a.Name FROM DetailsTable d INNER JOIN tb_Active a ON a.ActiveId=d.ActiveId
+		WHERE 
+			Title like '%'+@Title+'%' OR
+			Subtitle like '%'+@Subtitle+'%' OR
+			EventStartDate = @EventStartDate OR
+			EventLastDate = @EventLastDate OR 
+			d.ActiveId=@ActiveId
+	END
+	END
+end
