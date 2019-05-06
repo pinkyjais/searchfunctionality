@@ -1,0 +1,45 @@
+@using SearchFunctionality.Models
+@model IEnumerable<modelDATA>
+
+<table id="tblCustomers"  class="table table-vcenter table-responsive table-condensed table-bordered display" width="100%">
+    <thead>
+        <tr class="header">
+            <th>Id</th>
+            <th>Title</th>
+            <th>Subtitle</th>
+            <th>Event Start Date</th>
+            <th>Event End Date</th>
+            <th>Publication Start Date </th>
+            <th>Publication End Date</th>
+            <th>Tag</th>
+            <th>Description</th>
+            <th>Active Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (modelDATA customer in Model)
+        {
+            <tr>
+                <td>@customer.Id</td>
+                <td>@customer.Title</td>
+                <td>@customer.Subtitle</td>
+                <td>@customer.EventStartDate</td>
+                <td>@customer.EventLastDate</td>
+                <td>@customer.PublicationStartDate</td>
+                <td>@customer.PublicationEndDate</td>
+                <td>@customer.Tag</td>
+                <td>@customer.Description</td>
+                <td>@customer.Name</td>
+                <td>
+                    <a class="Edit" href="javascript:;">Edit</a>
+                    <a class="Update" href="javascript:;" style="display:none">Update</a>
+                    <a class="Cancel" href="javascript:;" style="display:none">Cancel</a>
+                    <a class="Delete" href="javascript:;">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
