@@ -1,0 +1,4 @@
+CREATE PROCEDURE sp_AllDetails
+	as begin
+	select * from DetailsTable
+	end
